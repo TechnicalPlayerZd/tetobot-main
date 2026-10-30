@@ -2,6 +2,9 @@
 
 #include "robot.hpp"
 
+pros::ADIDigitalOut pneumatic('A');
+bool pneumaticExtended = false;
+
 // ============================================================
 // DRIVETRAIN MOTORS
 // ============================================================
@@ -18,7 +21,7 @@ pros::MotorGroup leftMotors(
 );
 
 pros::MotorGroup rightMotors(
-    {-4, -3},
+    {-5, -3},
     pros::MotorGears::blue
 );
 
@@ -167,6 +170,13 @@ void robotOpcontrol() {
         } else {
             mechanismMotor.move(0);
         }
+
+        if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+            pneumaticExtended = !pneumaticExtended;
+            pneumatic.set_value(pneumaticExtended);
+        }
+
+        
 
         pros::delay(25);
     }
