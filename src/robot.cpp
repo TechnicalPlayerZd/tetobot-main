@@ -1,5 +1,3 @@
-/* src/robot.cpp */
-
 #include "robot.hpp"
 
 pros::ADIDigitalOut pneumatic('A');
